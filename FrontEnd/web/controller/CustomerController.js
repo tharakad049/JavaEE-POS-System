@@ -1,7 +1,7 @@
 $("#btnSaveCustomer").click(function () {
     var data = $("#customerForm").serialize();
     $.ajax({
-        url: "customer",
+        url: "http://localhost:8080/back/customer",
         method: "POST",
         data: data,
         success: function (res) {
@@ -76,7 +76,7 @@ loadAllCustomers();
 function loadAllCustomers() {
     $("#tblCustomer").empty();
     $.ajax({
-        url: "customer",
+        url: "http://localhost:8080/back/customer",
         method: "GET",
         success: function (resp) {
             for (const customer of resp.data) {
