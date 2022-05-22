@@ -5,17 +5,15 @@ public class ItemDTO {
     private String itemName;
     private int quantity;
     private String unitPrice;
-    private String discount;
 
     public ItemDTO() {
     }
 
-    public ItemDTO(String itemCode, String itemName, int quantity, String unitPrice, String discount) {
+    public ItemDTO(String itemCode, String itemName, int quantity, String unitPrice) {
         this.setItemCode(itemCode);
         this.setItemName(itemName);
         this.setQuantity(quantity);
         this.setUnitPrice(unitPrice);
-        this.setDiscount(discount);
     }
 
     public String getItemCode() {
@@ -50,14 +48,6 @@ public class ItemDTO {
         this.unitPrice = unitPrice;
     }
 
-    public String getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(String discount) {
-        this.discount = discount;
-    }
-
     @Override
     public String toString() {
         return "ItemDTO{" +
@@ -65,7 +55,6 @@ public class ItemDTO {
                 ", itemName='" + itemName + '\'' +
                 ", quantity=" + quantity +
                 ", unitPrice='" + unitPrice + '\'' +
-                ", discount='" + discount + '\'' +
                 '}';
     }
 }

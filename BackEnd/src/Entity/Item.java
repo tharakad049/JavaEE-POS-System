@@ -3,19 +3,18 @@ package Entity;
 public class Item {
     private String itemCode;
     private String itemName;
-    private String qtyOnHand;
-    private double unitPrice;
+    private int quantity;
+    private String unitPrice;
 
     public Item() {
     }
 
-    public Item(String itemCode, String itemName, String qtyOnHand, double unitPrice) {
+    public Item(String itemCode, String itemName, int quantity, String unitPrice) {
         this.setItemCode(itemCode);
         this.setItemName(itemName);
-        this.setQtyOnHand(qtyOnHand);
+        this.setQuantity(quantity);
         this.setUnitPrice(unitPrice);
     }
-
 
     public String getItemCode() {
         return itemCode;
@@ -33,19 +32,19 @@ public class Item {
         this.itemName = itemName;
     }
 
-    public String getQtyOnHand() {
-        return qtyOnHand;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setQtyOnHand(String qtyOnHand) {
-        this.qtyOnHand = qtyOnHand;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public double getUnitPrice() {
+    public String getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(double unitPrice) {
+    public void setUnitPrice(String unitPrice) {
         this.unitPrice = unitPrice;
     }
 
@@ -54,8 +53,8 @@ public class Item {
         return "Item{" +
                 "itemCode='" + itemCode + '\'' +
                 ", itemName='" + itemName + '\'' +
-                ", qtyOnHand='" + qtyOnHand + '\'' +
-                ", unitPrice=" + unitPrice +
+                ", quantity=" + quantity +
+                ", unitPrice='" + unitPrice + '\'' +
                 '}';
     }
 }

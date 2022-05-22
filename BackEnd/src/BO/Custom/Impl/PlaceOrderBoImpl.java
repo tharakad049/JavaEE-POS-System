@@ -1,4 +1,6 @@
 package BO.Custom.Impl;
 
-public class PlaceOrderBoImpl {
+import BO.Custom.PlaceOrderBo;
+
+public class PlaceOrderBoImpl implements PlaceOrderBo {
 }

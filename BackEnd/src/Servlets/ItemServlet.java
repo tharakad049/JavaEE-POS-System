@@ -1,5 +1,8 @@
 package Servlets;
 
+import BO.BOFactory;
+import BO.Custom.ItemBo;
+
 import javax.annotation.Resource;
 import javax.json.*;
 import javax.servlet.ServletException;
@@ -20,6 +23,8 @@ public class ItemServlet extends HttpServlet {
 
     @Resource(name = "java:comp/env/jdbc/pool")
     DataSource ds;
+
+    private ItemBo itemBO = (ItemBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.ITEM);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

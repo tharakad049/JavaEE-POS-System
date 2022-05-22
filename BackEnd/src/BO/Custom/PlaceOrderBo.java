@@ -1,4 +1,7 @@
 package BO.Custom;
 
-public interface PlaceOrderBo {
+import BO.SuperBO;
+
+public interface PlaceOrderBo extends SuperBO {
+
 }

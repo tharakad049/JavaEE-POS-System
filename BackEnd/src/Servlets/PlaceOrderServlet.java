@@ -1,5 +1,8 @@
 package Servlets;
 
+import BO.BOFactory;
+import BO.Custom.PlaceOrderBo;
+
 import javax.annotation.Resource;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
@@ -23,10 +26,11 @@ public class PlaceOrderServlet extends HttpServlet {
     @Resource(name = "java:comp/env/jdbc/pool")
     DataSource ds;
 
+    private PlaceOrderBo placeOrderBO = (PlaceOrderBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.PLACEORDER);
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json");
-        JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
         JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
         JsonObjectBuilder dataMsgBuilder = Json.createObjectBuilder();
         PrintWriter writer = resp.getWriter();
@@ -40,7 +44,7 @@ public class PlaceOrderServlet extends HttpServlet {
             String option = req.getParameter("option");
             switch (option) {
                 case "SelectCustomer":
-                    String selectID = req.getParameter("CusID");
+                    String selectID = req.getParameter("Id");
                     pstm = connection.prepareStatement("select * from customer where id=?");
                     pstm.setObject(1, selectID);
                     rst = pstm.executeQuery();
@@ -51,10 +55,10 @@ public class PlaceOrderServlet extends HttpServlet {
                         objectBuilder.add("name", cusName);
                         objectBuilder.add("address", cusAddress);
                         objectBuilder.add("salary", cusSalary);
-                        arrayBuilder.add(objectBuilder.build());
+
                         System.out.println(cusName+""+cusAddress+""+cusSalary);
                     }
-                    dataMsgBuilder.add("data", arrayBuilder.build());
+                    dataMsgBuilder.add("data", objectBuilder.build());
                     dataMsgBuilder.add("massage", "Done");
                     dataMsgBuilder.add("status", 200);
                     writer.print(dataMsgBuilder.build());
@@ -95,9 +99,9 @@ public class PlaceOrderServlet extends HttpServlet {
                         objectBuilder.add("name", Name);
                         objectBuilder.add("qty", QTY);
                         objectBuilder.add("price", Price);
-                        arrayBuilder.add(objectBuilder.build());
+
                     }
-                    dataMsgBuilder.add("data", arrayBuilder.build());
+                    dataMsgBuilder.add("data", objectBuilder.build());
                     dataMsgBuilder.add("massage", "Done");
                     dataMsgBuilder.add("status", 200);
                     writer.print(dataMsgBuilder.build());

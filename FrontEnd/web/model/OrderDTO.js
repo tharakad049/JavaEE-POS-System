@@ -14,8 +14,6 @@ function Order(orderId,cusId,date,discount,cost) {
         return discount;
     }
 
-
-
     this.getOrderDetails=function () {
         return orderDetails;
     }
@@ -26,8 +24,6 @@ function Order(orderId,cusId,date,discount,cost) {
     this.getCusId=function () {
         return cusId;
     }
-
-
 
     this.setOrderId=function (id) {
         orderId=id;
@@ -51,7 +47,5 @@ function Order(orderId,cusId,date,discount,cost) {
     this.getOrderCost=function () {
         return orderCost
     }
-
-
 
 }
