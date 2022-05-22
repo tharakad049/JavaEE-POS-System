@@ -126,6 +126,7 @@ function clearAll() {
     loadAllCustomers();
     $("#lblcusid,#lblcusname,#lblcusaddress,#lblcussalary").text("");
 }
+
 $("#btnSaveCustomer").attr('disabled', true);
 
 $("#btnSaveCustomer").click(function () {
@@ -138,6 +139,7 @@ $("#btnSaveCustomer").click(function () {
             if (res.status == 200) {
                 alert(res.message);
                 loadAllCustomers();
+                clearAll();
             } else {
                 alert(res.data);
             }
@@ -160,6 +162,7 @@ $("#btnDeleteCustomer").click(function () {
             if (res.status == 200) {
                 alert(res.message);
                 loadAllCustomers();
+                clearAll();
             } else if (res.status == 400) {
                 alert(res.data);
             } else {
@@ -190,6 +193,7 @@ $("#btnUpdateCustomer").click(function () {
             if (res.status == 200) {
                 alert(res.message);
                 loadAllCustomers();
+                clearAll();
             } else if (res.status == 400) {
                 alert(res.message);
             } else {
