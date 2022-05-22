@@ -1,13 +1,11 @@
-/*
-var itemCodeRegEx = /^(I00)[0-9]{1,3}$/;
+/*var itemCodeRegEx = /^(I00-)[0-9]{1,3}$/;
 var itemNameRegEx = /^[A-z ]{3,20}$/;
 var itemQuantityRegEx = /^[0-9/A-z. ,]{1,}$/;
 var itemPriceRegEx = /^[0-9]{1,}[.]?[0-9]{1,2}$/;
-*/
 
-/*$('#txtCode,#txtItemName,#txtItemQuantity,#txtPrice').on('keydown', function (eventOb) {
+$('#txtCode,#txtItemName,#txtItemQuantity,#txtPrice').on('keydown', function (eventOb) {
     if (eventOb.key == "Tab") {
-        eventOb.preventDefault(); // stop execution of the button
+        eventOb.preventDefault();
     }
 });
 $('#txtCode,#txtItemName,#txtItemQuantity,#txtPrice').on('blur', function () {
@@ -37,7 +35,7 @@ $("#txtPrice").on('keyup', function (eventOb) {
     }
 });
 
-$("#btnSaveItem").attr('disabled', true);
+$("#btnSaveItems").attr('disabled', true);
 
 function Valid() {
     var itemCode = $("#txtCode").val();
@@ -52,7 +50,7 @@ function Valid() {
             if (itemQuantityRegEx.test(itemQuantity)) {
                 var itemPrice = $("#txtPrice").val();
                 var resp = itemPriceRegEx.test(itemPrice);
-                $("#txtQuantity").css('border', '2px solid green');
+                $("#txtItemQuantity").css('border', '2px solid green');
                 $("#lblItemQuantity").text("");
                 if (resp) {
                     $("#txtPrice").css('border', '2px solid green');
@@ -65,7 +63,7 @@ function Valid() {
                 }
             } else {
                 $("#txtItemQuantity").css('border', '2px solid red');
-                $("#lblItemQuantity").text("Item Quantity is a required field : Mimum 7");
+                $("#lblItemQuantity").text("Item Quantity is a required field : Mimum 1");
                 return false;
             }
         } else {
@@ -92,9 +90,6 @@ function checkIfValid() {
             var resp = itemPriceRegEx.test(itemPrice);
             if (resp) {
                 let res = confirm("Do you really need to add this Item..?");
-                if (res) {
-                    clearAllItems();
-                }
             } else {
                 $("#txtPrice").focus();
             }
@@ -109,13 +104,13 @@ function checkIfValid() {
 function setButtons() {
     let c = Valid();
     if (c) {
-        $("#btnSaveItem").attr('disabled', false);
+        $("#btnSaveItems").attr('disabled', false);
     } else {
-        $("#btnSaveItem").attr('disabled', true);
+        $("#btnSaveItems").attr('disabled', true);
     }
 }
 
-$('#btnSaveItem').click(function () {
+$('#btnSaveItems').click(function () {
     checkIfValid();
     clearAllItems();
 });
@@ -124,12 +119,12 @@ function clearAllItems() {
     $('#txtCode,#txtItemName,#txtItemQuantity,#txtPrice').val("");
     $('#txtCode,#txtItemName,#txtItemQuantity,#txtPrice').css('border', '2px solid #ced4da');
     $('#txtCode').focus();
-    $("#btnSaveItem").attr('disabled', true);
+    $("#btnSaveItems").attr('disabled', true);
     loadAllItems();
     $("#lblItemCode,#lblItemName,#lblItemQuantity,#lblItemPrice").text("");
 }*/
 
-$("#btnSaveItem").click(function () {
+$("#btnSaveItems").click(function () {
     var data = $("#itemForm").serialize();
     $.ajax({
         url: "http://localhost:8080/back/item",

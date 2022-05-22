@@ -7,12 +7,12 @@ $("#txtSelectItemPrice").attr('disabled', true);
 $("#txtSelectQTYOnHand").attr('disabled', true);
 
 
-generateOrderID();
+/*generateOrderID();
 
 function generateOrderID() {
     $("#txtOrderID").val("O00-001");
     $.ajax({
-        url: "http://localhost:8080/pos/order?option=GenerateOid",
+        url: "http://localhost:8080/back/order?option=GenerateOid",
         method: "GET",
         success: function (response) {
             var orderId = response.getOrderId();
@@ -29,11 +29,15 @@ function generateOrderID() {
         error: function (ob, statusText, error) {
         }
     });
-}
+}*/
 
-$("#btnOrderCusSearch").click(function () {
+/*$("#btnOrderCusSearch").click(function () {
+    searchCustomerDetail();
+});
+
+function searchCustomerDetail() {
     $.ajax({
-        url: "http://localhost:8080/pos/customer?option=SelectCustomer",
+        url: "http://localhost:8080/back/order?option=SelectCustomer" ,
         method: "GET",
         success: function (response) {
             $("#orderCustomerName").val(response.name);
@@ -44,6 +48,40 @@ $("#btnOrderCusSearch").click(function () {
             alert("No Such Customer");
         }
     });
+}*/
+
+$("#btnOrderCusSearch").click(function () {
+    $.ajax({
+        url: "http://localhost:8080/back/customer",
+        method: "GET",
+        success: function (response) {
+            $("#orderCustomerName").val(response.name);
+            $("#orderCustomerAddress").val(response.address);
+            $("#orderCustomerSalary").val(response.salary);
+        },
+        error: function (ob, statusText, error) {
+            alert("No Such Customer");
+        }
+    });
+});
+
+$("#txtSelectItemCode").on('keyup', function (e) {
+    $.ajax({
+        url: "http://localhost:8080/back/item",
+        method: "GET",
+        success : function (res){
+            if (res.status==200){
+                $("#txtSelectItemName").val(res.data.name);
+                $("#txtSelectItemPrice").val(res.data.price);
+                $("#txtSelectQTYOnHand").val(res.data.qty);
+            }else if (res.status==400){
+                alert("Item not found");
+            }
+        },
+        error : function (res){
+            alert("System Error");
+        }
+    })
 });
 
 
